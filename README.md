@@ -2,15 +2,10 @@
 
 ## Installation
 
-* Install `[gb](http://getgb.io/)`.
-* Build the app
-
-``` shell
-$ gb build
-```
+* go get github.com/adhocteam/aws-ssh
 
 ## Usage
 
 ``` shell
-$ ./bin/aws-ssh
+$ aws-ssh
 ```
