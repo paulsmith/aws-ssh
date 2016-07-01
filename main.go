@@ -58,6 +58,9 @@ func main() {
 
 	rolesToSkip := strings.Split(*skipRoles, ",")
 
+	// always skip bastion, already got it above
+	rolesToSkip = append(rolesToSkip, "bastion")
+
 	instances, err = getInstances(*region, *env, *role, rolesToSkip)
 	if err != nil {
 		panic(err)
@@ -151,6 +154,7 @@ func getInstances(region string, env string, role string, rolesToSkip []string) 
 
 	var instances []instance
 
+Loop:
 	for _, res := range resp.Reservations {
 		log.Printf("Found %d instance(s) in the reservation", len(res.Instances))
 
@@ -163,7 +167,7 @@ func getInstances(region string, env string, role string, rolesToSkip []string) 
 				if *tag.Key == "role" {
 					role := *tag.Value
 					if in(role, rolesToSkip) {
-						continue
+						continue Loop
 					}
 				}
 				if *tag.Key == "Name" {
