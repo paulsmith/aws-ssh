@@ -2,7 +2,7 @@
 
 ## Installation
 
-* go get github.com/adhocteam/aws-ssh
+* go get github.com/paulsmith/aws-ssh
 
 ## Usage
 
